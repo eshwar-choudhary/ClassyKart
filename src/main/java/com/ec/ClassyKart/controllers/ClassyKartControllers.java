@@ -9,6 +9,12 @@ public class ClassyKartControllers {
 
     @GetMapping("/")
     public String loginPage() {
-        return "login";
+        return "index";
     }
+
+    @GetMapping("/home")
+    public String homePage() {
+        return "home";
+    }
+
 }
