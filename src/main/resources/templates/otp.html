@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>OTP Modal with Timer</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS to center modal and add some realistic UI features -->
+    <style>
+        /* Centering the modal in the viewport */
+        .modal-dialog-centered {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Making the modal window larger */
+        .modal-lg {
+            max-width: 600px;
+        }
+
+        /* Timer styling */
+        #timer {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #ff4d4d;
+        }
+
+        /* Full page height */
+        body, html {
+            height: 100%;
+        }
+
+        /* Styling the OTP input field */
+        #otpInput {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        /* A little margin on the modal footer buttons */
+        .modal-footer button {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- OTP Modal -->
+<div class="modal fade show" id="otpModal" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true" style="display:block;">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="otpModalLabel">Enter OTP</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form th:action="@{/submitOtp}" method="post">
+                    <div class="mb-4">
+                        <label for="otpInput" class="form-label">Please enter the OTP sent to your email <span th:text="${email}"></span></label>
+                        <input type="text" class="form-control" id="otpInput" name="otp" maxlength="6" placeholder="••••••" required>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <p id="timer" class="text-danger">Time remaining: 02:00</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit OTP</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (needed for modals) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Timer Script -->
+<script>
+    // Function to start the countdown
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        var countdown = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = "Time remaining: " + minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                clearInterval(countdown);
+                display.textContent = "Time expired!";
+                // Additional actions on time expiry (e.g., disabling input or resending OTP)
+            }
+        }, 1000);
+    }
+
+    window.onload = function () {
+        // 2 minutes countdown
+        var twoMinutes = 60 * 2,
+            display = document.querySelector('#timer');
+        startTimer(twoMinutes, display);
+
+        // Open the modal immediately on page load
+        var myModal = new bootstrap.Modal(document.getElementById('otpModal'), {
+            backdrop: 'static',
+            keyboard: false
+        });
+        myModal.show();
+    };
+</script>
+
+</body>
+</html>
