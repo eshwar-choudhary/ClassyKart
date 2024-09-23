@@ -1,4 +1,4 @@
-package com.ec.ClassyKart;
+package com.ec.classyKart;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
