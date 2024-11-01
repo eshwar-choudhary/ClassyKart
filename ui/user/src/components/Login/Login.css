@@ -1,0 +1,93 @@
+/* src/components/Login/Login.css */
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    background: linear-gradient(135deg, #4e54c8, #8f94fb); /* Smooth gradient background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Make sure it takes full height */
+}
+
+.login-box {
+    background: #ffffff; /* White background */
+    padding: 40px;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    max-width: 400px;
+    width: 100%; /* Full width of the box */
+    text-align: center; /* Center text */
+}
+
+h2 {
+    color: #333; /* Dark color for text */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+.input-group {
+    margin-bottom: 20px; /* More space between inputs */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px; /* Space below labels */
+    font-weight: 500; /* Medium weight for labels */
+    color: #555; /* Slightly darker color */
+}
+
+input {
+    width: 100%;
+    padding: 15px; /* Increased padding */
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Slightly rounded corners */
+    font-size: 16px; /* Increase font size */
+    transition: border-color 0.3s; /* Smooth transition */
+}
+
+input:focus {
+    border-color: #4e54c8; /* Change border color on focus */
+    outline: none; /* Remove outline */
+}
+
+button {
+    width: 100%;
+    padding: 15px; /* Increased padding */
+    background-color: #4e54c8; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 6px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px; /* Increase font size */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+button:hover {
+    background-color: #3a429a; /* Darker blue on hover */
+}
+
+.error {
+    color: red;
+    text-align: center; /* Center the error message */
+    margin-top: 10px; /* Space above the error message */
+}
+
+.signup-link {
+    margin-top: 20px; /* Space above the link */
+}
+
+.signup-link a {
+    color: #4e54c8; /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+.signup-link a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
